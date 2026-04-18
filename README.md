@@ -35,7 +35,7 @@ index=botsv3 earliest=0 sourcetype=WinEventLog:Security (EventCode=4624 OR Event
 ```
 Found 7,427 process creation events (4688), 427 successful logons (4624), and only 3 failed logons (4625). The extremely low failure count relative to successful logons was the initial anomaly — in a normal environment, some level of failed authentication is expected. Only 3 failures across the entire environment warranted immediate review.
 
-![Event ID Distribution](images/01-eventid-distribution.png)
+![Event ID Distribution](images/images01-eventid-distribution.png)
 
 ---
 
@@ -60,7 +60,7 @@ index=botsv3 earliest=0 sourcetype=WinEventLog:Security EventCode=4624
 ```
 17 unique accounts identified. `MalloryKraeusen` had zero successful logons — confirming the Guest attempt was isolated. `bstoll@froth.ly` appeared with 4 successful logons using an unusual email-format username — atypical compared to all other accounts using short names.
 
-![Successful Logon Accounts](images/02-successful-logon-accounts.png)
+![Successful Logon Accounts](images/images02-successful-logon-accounts.png)
 
 ---
 
@@ -83,7 +83,7 @@ index=botsv3 earliest=0 sourcetype=WinEventLog:Security EventCode=4688
 ```
 `BSTOLL-L.froth.ly` had the highest cmd.exe count of any machine (376) and was also running PowerShell. This machine appeared in both the unusual logon investigation and the process creation analysis — making it the clear investigation priority.
 
-![PowerShell and CMD Activity by Host](images/03-powershell-cmd-by-host.png)
+![PowerShell and CMD Activity by Host](images/images03-powershell-cmd-by-host.png)
 
 ---
 
@@ -109,7 +109,7 @@ Flag analysis:
 
 This is a **PowerShell Empire C2 stager** — one of the most widely recognised attacker frameworks for maintaining persistent control over compromised systems.
 
-![Empire C2 Command Evidence](images/04-empire-c2-command.png)
+![Empire C2 Command Evidence](images/images04-empire-c2-command.png)
 
 **Supporting reconnaissance commands also identified:**
 - `reg query HKLM\SOFTWARE\...\Uninstall\*` — automated software enumeration (Empire host recon module)
